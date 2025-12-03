@@ -1,0 +1,43 @@
+.viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: radial-gradient(circle at 15% 20%, #16254a, transparent 25%),
+    radial-gradient(circle at 80% 0%, #20356d, transparent 30%),
+    linear-gradient(135deg, #0c1322, #0f1a31);
+  color: #e6edf7;
+  overflow: hidden; 
+}
+
+.header {
+  padding: 18px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(12, 19, 34, 0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  color: #9fb0d1;
+}
+
+.title {
+  margin: 6px 0 8px;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+}
+
+.subhead {
+  margin: 0;
+  color: #9fb0d1;
+  font-size: 14px;
+}
+
+.canvas {
+  flex: 1;
+}
+
