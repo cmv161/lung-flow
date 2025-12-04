@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import type { Group } from 'three';
@@ -21,14 +21,17 @@ export default function LungsModel({
   const group = useRef<Group | null>(null);
   const { scene } = useGLTF(MODEL_PATH);
 
-  useFrame((state) => {
+  useEffect(() => {
     if (!group.current) return;
 
     if (!autoBreathing) {
       group.current.scale.set(BASE_SCALE, BASE_SCALE, BASE_SCALE);
       group.current.position.set(0, BASE_POSITION_Y, 0);
-      return;
     }
+  }, [autoBreathing]);
+
+  useFrame((state) => {
+    if (!group.current || !autoBreathing) return;
 
     const time = state.clock.getElapsedTime();
     const breathsPerSecond = breathsPerMinute / 60;

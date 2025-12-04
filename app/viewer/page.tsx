@@ -4,17 +4,29 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, Html } from '@react-three/drei';
 import { Suspense, useState } from 'react';
 import styles from './viewer.module.css';
-import BreathingControls, {
+import BreathingControls from './BreathingControls';
+import LungsModel from './LungsModel';
+import ScenarioSwitcher from './ScenarioSwitcher';
+import {
   DEFAULT_AMPLITUDE,
   DEFAULT_AUTO_BREATHING,
   DEFAULT_BREATHS_PER_MINUTE,
-} from './BreathingControls';
-import LungsModel from './LungsModel';
+  DEFAULT_SCENARIO_ID,
+  LungScenario,
+  type ScenarioId,
+} from './scenarios';
 
 export default function ViewerPage() {
+  const [scenarioId, setScenarioId] = useState<ScenarioId>(DEFAULT_SCENARIO_ID);
   const [breathsPerMinute, setBreathsPerMinute] = useState(DEFAULT_BREATHS_PER_MINUTE);
   const [amplitude, setAmplitude] = useState(DEFAULT_AMPLITUDE);
   const [autoBreathing, setAutoBreathing] = useState(DEFAULT_AUTO_BREATHING);
+
+  const scenarioSwitcherHandler = (scenario: LungScenario) => {
+    setScenarioId(scenario.id);
+    setBreathsPerMinute(scenario.defaultBreathsPerMinute);
+    setAmplitude(scenario.defaultAmplitude);
+  };
 
   return (
     <main className={styles.viewer}>
@@ -24,7 +36,12 @@ export default function ViewerPage() {
           <h1 className={styles.title}>Interactive Lung Model</h1>
           <p className={styles.subhead}>Drag to rotate, scroll to zoom</p>
         </div>
-
+        <ScenarioSwitcher
+          scenarioId={scenarioId}
+          breathsPerMinute={breathsPerMinute}
+          amplitude={amplitude}
+          onChange={scenarioSwitcherHandler}
+        />
         <BreathingControls
           breathsPerMinute={breathsPerMinute}
           amplitude={amplitude}

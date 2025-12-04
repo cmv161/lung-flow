@@ -3,12 +3,9 @@ import styles from './viewer.module.css';
 
 export const BREATHS_PER_MINUTE_MIN = 12;
 export const BREATHS_PER_MINUTE_MAX = 60;
-export const DEFAULT_BREATHS_PER_MINUTE = 20;
 export const AMPLITUDE_MIN = 0.01;
 export const AMPLITUDE_MAX = 0.06;
 export const AMPLITUDE_STEP = 0.01;
-export const DEFAULT_AMPLITUDE = 0.02;
-export const DEFAULT_AUTO_BREATHING = true;
 
 type BreathingControlsProps = {
   breathsPerMinute: number;
