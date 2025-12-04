@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import type { Group } from 'three';
+import { getBreathFactor } from './lib/breathing';
 
 type LungsModelProps = {
   breathsPerMinute: number;
@@ -32,11 +33,8 @@ export default function LungsModel({
 
   useFrame((state) => {
     if (!group.current || !autoBreathing) return;
-
     const time = state.clock.getElapsedTime();
-    const breathsPerSecond = breathsPerMinute / 60;
-    const phase = time * breathsPerSecond * Math.PI * 2;
-    const breathFactor = 1 + amplitude * Math.sin(phase);
+    const breathFactor = getBreathFactor(time, breathsPerMinute, amplitude);
 
     const sx = BASE_SCALE * (1 + (breathFactor - 1) * 0.4);
     const sy = BASE_SCALE * (1 + (breathFactor - 1) * 0.9);
