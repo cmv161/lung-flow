@@ -15,6 +15,16 @@
   background: rgba(12, 19, 34, 0.85);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.headerText {
+  flex: 1 1 260px;
+  min-width: 220px;
 }
 
 .eyebrow {
@@ -37,7 +47,31 @@
   font-size: 14px;
 }
 
-.canvas {
+.controls {
+  display: grid;
+  gap: 10px;
+  min-width: 240px;
+}
+
+.control,
+.controlRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 14px;
+  color: #dce5ff;
+}
+
+.control input[type='range'] {
   flex: 1;
 }
 
+.controlRow {
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.canvas {
+  flex: 1;
+}
